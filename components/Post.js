@@ -3,11 +3,15 @@ import Byline from "./Byline";
 import Outfit from "./Outfit";
 import ActionBar from "./ActionBar";
 
-export default function Post() {
+export default function Post({ outfit }) {
   return (
     <View style={styles.post}>
-      <Byline />
-      <Outfit />
+      <Byline
+        avatarSrc={outfit.avatarSrc}
+        name={outfit.name}
+        date={outfit.date}
+      />
+      <Outfit imgSrc={outfit.imgSrc} pieces={outfit.pieces} />
       <ActionBar />
     </View>
   );

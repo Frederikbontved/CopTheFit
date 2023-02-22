@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function PieceHeader() {
+export default function PieceHeader({ brand, name }) {
   return (
     <View style={styles.header}>
-      <Text style={styles.brand}>Bianca Chandon</Text>
-      <Text style={styles.name}>Lover Hoodie blue</Text>
+      <Text style={styles.brand}>{brand}</Text>
+      <Text style={styles.name}>{name}</Text>
     </View>
   );
 }

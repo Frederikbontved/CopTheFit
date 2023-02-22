@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 
-export default function Byline() {
+export default function Byline({ name, date, avatarSrc }) {
   return (
     <View style={styles.byline}>
       <View style={styles.left}>
-        <View style={styles.avatar} />
+        <Image style={styles.avatar} source={avatarSrc} />
         <View style={styles.meta}>
-          <Text style={styles.name}>Frederik Larsen</Text>
-          <Text style={styles.date}>13/11/2017</Text>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.date}>{date}</Text>
         </View>
       </View>
       <View style={styles.right}>

@@ -1,13 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 
-export default function PieceImage() {
-  return <View style={styles.image} />;
+export default function PieceImage({ imgSrc }) {
+  return <Image style={styles.image} source={imgSrc} />;
 }
 
 const styles = StyleSheet.create({
   image: {
     width: "100%",
-    backgroundColor: "#ececec",
-    aspectRatio: 1,
+    height: 350,
+    resizeMode: "contain",
+    borderTopWidth: 1,
+    borderTopColor: "#ececec",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ececec",
   },
 });

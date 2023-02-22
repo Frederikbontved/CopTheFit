@@ -3,8 +3,12 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Tooltip from "rn-tooltip";
 import { Entypo } from "@expo/vector-icons";
 
-export default function Tag({ top, left, openExplorer }) {
+export default function Tag({ top, left, brand, name, openExplorer }) {
   const tooltipRef = useRef(null);
+
+  const trimmedBrand =
+    brand.length > 12 ? brand.substring(0, 12) + ".." : brand;
+  const trimmedName = name.length > 14 ? name.substring(0, 14) + ".." : name;
 
   const closeTooltip = () => {
     tooltipRef.current.toggleTooltip();
@@ -28,8 +32,8 @@ export default function Tag({ top, left, openExplorer }) {
             }}
           >
             <View style={styles.left}>
-              <Text style={styles.brand}>Nike</Text>
-              <Text style={styles.name}>Liverpool trøje</Text>
+              <Text style={styles.brand}>{trimmedBrand}</Text>
+              <Text style={styles.name}>{trimmedName}</Text>
             </View>
             <View style={styles.right}>
               <Entypo
@@ -60,8 +64,26 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -12,
     left: -12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   tooltip: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
     borderRadius: 5,
   },
   popTag: {

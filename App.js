@@ -2,22 +2,19 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View, FlatList } from "react-native";
 import Post from "./components/Post";
 import Separator from "./components/Separator";
-
-const OUTFITS = [1, 2];
+import { OUTFITS } from "./OUTFITS";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <SafeAreaView />
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={OUTFITS}
-        renderItem={() => <Post />}
+        renderItem={({ index }) => <Post outfit={OUTFITS[index]} />}
         keyExtractor={(_, i) => i}
         ItemSeparatorComponent={<Separator />}
       />
       <StatusBar style="auto" />
-      <SafeAreaView />
-    </View>
+    </SafeAreaView>
   );
 }
 

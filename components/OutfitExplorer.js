@@ -3,9 +3,11 @@ import { StyleSheet, View, Modal, SafeAreaView, FlatList } from "react-native";
 import PieceSlider from "./PieceSlider";
 import { Feather } from "@expo/vector-icons";
 
-const PIECES = [1, 2];
-
-export default function OutfitExplorer({ explorerOpen, closeExplorer }) {
+export default function OutfitExplorer({
+  pieces,
+  explorerOpen,
+  closeExplorer,
+}) {
   const [listHeight, setListHeight] = useState(100);
   const [listWidth, setListWidth] = useState(100);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +31,7 @@ export default function OutfitExplorer({ explorerOpen, closeExplorer }) {
       >
         <View style={styles.modalView}>
           <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ backgroundColor: "green", zIndex: 1 }}>
+            <View style={{ zIndex: 1 }}>
               <Feather
                 name="x"
                 size={32}
@@ -43,7 +45,7 @@ export default function OutfitExplorer({ explorerOpen, closeExplorer }) {
 
             <View style={styles.verticalFlatListContainer}>
               <View style={styles.piecePaginationContainer}>
-                {PIECES.map((_, index) => {
+                {pieces.map((_, index) => {
                   return (
                     <View
                       key={index}
@@ -58,16 +60,16 @@ export default function OutfitExplorer({ explorerOpen, closeExplorer }) {
                 })}
               </View>
               <FlatList
-                data={PIECES}
+                data={pieces}
                 keyExtractor={(_, index) => index}
-                renderItem={() => (
+                renderItem={({ index }) => (
                   <View
                     style={[
                       styles.pieceContainer,
                       { width: listWidth, height: listHeight },
                     ]}
                   >
-                    <PieceSlider width={listWidth} />
+                    <PieceSlider width={listWidth} piece={pieces[index]} />
                   </View>
                 )}
                 decelerationRate="fast"

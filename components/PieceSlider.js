@@ -3,9 +3,7 @@ import { StyleSheet, View, FlatList, Text } from "react-native";
 import Piece from "./Piece";
 import { Feather } from "@expo/vector-icons";
 
-const ALTERNATIVES = [1, 2];
-
-export default function PieceSlider({ width }) {
+export default function PieceSlider({ width, piece }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const onScroll = (event) => {
@@ -18,16 +16,18 @@ export default function PieceSlider({ width }) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={ALTERNATIVES}
+        data={piece}
         keyExtractor={(_, index) => index}
-        renderItem={() => (
+        renderItem={({ index }) => (
           <View>
             <View style={styles.type}>
-              <Text style={styles.pieceType}>Actual hoodie</Text>
+              <Text style={styles.pieceType}>
+                {piece[index].category} {piece[index].type}
+              </Text>
               <Feather name="info" size={16} color="white" />
             </View>
             <View style={[styles.piece, { width: width - 32 }]}>
-              <Piece />
+              <Piece piece={piece[index]} />
             </View>
           </View>
         )}
@@ -39,7 +39,7 @@ export default function PieceSlider({ width }) {
         bounces={false}
       />
       <View style={styles.pagination}>
-        {ALTERNATIVES.map((_, index) => {
+        {piece.map((_, index) => {
           return (
             <View
               key={index}
